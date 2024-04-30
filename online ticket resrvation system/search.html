@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="search.css">
+    <script src="search.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Search Results</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="results">
+            <h2>Trains from Chennai to Tirupathi</h2>
+            <h2>Trains from Chennai to Hyderabad</h2>
+            <p>Charminar Express</p>
+            <p>Time: 06:20am - 09:15am</p>
+            <div id="ticket-options">
+                <label for="ticket-type">Select Ticket Type:</label>
+                <select id="ticket-type">
+                    <option value="General">General</option>
+                    <option value="3-Tier">3-Tier</option>
+                    <option value="2-Tier">2-Tier</option>
+                    <option value="1-Tier">1-Tier</option>
+                </select>
+                <button id="calculate-price">Calculate Price</button>
+                <a href="Bookticket.html"><button type="button">Book Ticket</button></a>
+                <p id="price"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 IRCTC. All rights reserved.</p>
+    </footer>
+</body>
+</html>
