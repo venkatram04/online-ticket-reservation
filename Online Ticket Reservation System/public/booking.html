@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Details</title>
+    <!-- Include CSS -->
+    <link rel="stylesheet" href="booking.css">
+</head>
+<body>
+    <!-- Main Content Section -->
+    <main>
+        <!-- Display Booking Details Here -->
+        <section id="booking-details">
+            <h2>Your Booking Details:</h2>
+            <!-- Drop-down menu for train names -->
+            <select id="train-names">
+                <!-- Train names will be dynamically populated here -->
+            </select>
+            <!-- Drop-down menu for class selection -->
+            <select id="class-selection">
+                <option value="GEN">General</option>
+                <option value="Sleeper">Sleeper</option>
+                <option value="3A">3A</option>
+                <option value="2A">2A</option>
+                <option value="1A">1A</option>
+            </select>
+            <!-- Drop-down menu for selecting number of tickets -->
+            <select id="noof-tickets">
+                <option value="0">No.of Tickets</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+                <option value="5">Five</option>
+            </select>
+            <!-- Proceed button -->
+            <button id="proceed-btn">Proceed</button>
+            <!-- Booking description -->
+            <div id="booking-description">
+                <h3>Booking Description:</h3>
+                <!-- Seats for passengers will be dynamically displayed here -->
+                <p id="seat-numbers"></p>
+                <p>Selected Train: <span id="selected-train"></span></p>
+                <p>Source: <span id="source"></span>, Destination: <span id="destination"></span>, Date: <span id="departure-date"></span></p>
+                <p>Class: <span id="selected-class"></span>, Number of Tickets: <span id="num-of-tickets"></span></p>
+                <p>Total Amount Payable: <span id="total-amount"></span></p>
+            </div>
+            <!-- Pay & Print button -->
+            <button id="pay-print-btn">Pay & Print</button>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 IRCTC. All rights reserved.</p>
+    </footer>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Retrieve train details from session storage
+            var trainDetails = JSON.parse(sessionStorage.getItem('trainDetails'));
+            if (trainDetails) {
+                // Populate drop-down menu with train names and numbers
+                var selectMenu = $('#train-names');
+                trainDetails.forEach(function(train) {
+                    selectMenu.append('<option value="' + train + '">' + train + '</option>');
+                });
+            }
+
+            // Initialize seat number counter
+            var seatNumber = 1;
+
+            // Calculate total amount and assign sequential seats when Proceed button is clicked
+            $('#proceed-btn').click(function() {
+                var selectedTrain = $('#train-names').val();
+                var source = sessionStorage.getItem('source');
+                var destination = sessionStorage.getItem('destination');
+                var departureDate = sessionStorage.getItem('departureDate');
+                var selectedClass = $('#class-selection').val();
+                var numOfTickets = parseInt($('#noof-tickets').val());
+
+                // Calculate total amount based on the selected class and number of tickets
+                var price;
+                switch (selectedClass) {
+                    case 'GEN':
+                        price = 50;
+                        break;
+                    case 'Sleeper':
+                        price = 150;
+                        break;
+                    case '3A':
+                        price = 500;
+                        break;
+                    case '2A':
+                        price = 750;
+                        break;
+                    case '1A':
+                        price = 990;
+                        break;
+                    default:
+                        price = 0;
+                        break;
+                }
+                var totalAmount = price * numOfTickets;
+
+                // Display booking description
+                $('#selected-train').text(selectedTrain);
+                $('#source').text(source);
+                $('#destination').text(destination);
+                $('#departure-date').text(departureDate);
+                $('#selected-class').text(selectedClass);
+                $('#num-of-tickets').text(numOfTickets);
+                $('#total-amount').text(totalAmount);
+
+                // Assign sequential seat numbers
+                var seatNumbers = '';
+                for (var i = 0; i < numOfTickets; i++) {
+                    seatNumbers += 'Seat ' + seatNumber + ', ';
+                    seatNumber++; // Increment seat number
+                }
+                $('#seat-numbers').text('Seat Numbers: ' + seatNumbers);
+
+                // Show Pay & Print button
+                $('#pay-print-btn').show();
+            });
+
+            // Pay & Print button click event
+            $('#pay-print-btn').click(function() {
+                // Display "Payment processing" message
+                alert('Payment processing');
+
+                // Print the page and save as PDF
+                window.print();
+            });
+        });
+    </script>
+</body>
+</html>

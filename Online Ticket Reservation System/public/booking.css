@@ -1,0 +1,91 @@
+/* Reset default margin and padding */
+html, body, h1, h2, h3, h4, h5, h6, p, ul, li, form, button, input, select {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set body background color */
+body {
+    background-image: url('train.jpg');
+    background-color: #f7f7f7; /* Light gray */
+    font-family: Arial, sans-serif; /* Specify font family */
+    color: #333; /* Dark gray text */
+}
+
+/* Main content section */
+main {
+    padding: 20px;
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 10px; /* Add space below headings */
+    color: #007bff; /* Blue */
+}
+
+/* Footer styles */
+footer {
+    background-color: #007bff; /* Dark gray background */
+    color: #fff; /* White text */
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Form section styles */
+#booking-details {
+    border: 1px solid #ccc; /* Add border */
+    padding: 20px;
+    border-radius: 5px; /* Rounded corners */
+    background-color: #fff; /* White background */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+}
+
+/* Drop-down menu styles */
+select {
+    margin-bottom: 10px; /* Add space between drop-down menus */
+    width: 100%; /* Make drop-down menus full width */
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Proceed button styles */
+#proceed-btn {
+    margin-top: 20px; /* Add space above the proceed button */
+    padding: 8px 16px;
+    background-color: #28a745; /* Green color */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Proceed button hover styles */
+#proceed-btn:hover {
+    background-color: #218838; /* Darker green color */
+}
+
+/* Booking description styles */
+#booking-description {
+    margin-top: 20px; /* Add space above the booking description */
+}
+
+/* Pay & Print button styles */
+#pay-print-btn {
+    display: none; /* Initially hide the Pay & Print button */
+    margin-top: 20px; /* Add space above the pay & print button */
+    padding: 8px 16px;
+    background-color: #007bff; /* Blue color */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Pay & Print button hover styles */
+#pay-print-btn:hover {
+    background-color: #0056b3; /* Darker blue color */
+}

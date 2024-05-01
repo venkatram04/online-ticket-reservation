@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRCTC Train Ticket Booking - Search Results</title>
+    <!-- Include CSS -->
+    <link rel="stylesheet" href="search.css">
+    <style>
+        /* CSS for table borders */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Style for proceed button */
+        #proceed-btn {
+            margin-top: 20px;
+            padding: 8px 16px;
+            background-color: #4CAF50; /* Green color */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Style for proceed button on hover */
+        #proceed-btn:hover {
+            background-color: #45a049; /* Darker green color */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>IRCTC Train Ticket Booking - Search Results</h1>
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Display Search Results Here -->
+        <section id="search-results">
+            <h2>Available Trains:</h2>
+            <!-- Display the departure date, source, and destination -->
+            <p id="departure-date"></p>
+            <p>From: <span id="source"></span> To: <span id="destination"></span></p>
+            <p><mark>Remember the train name and train number in which you want to travel.</mark></p>
+            <!-- Table to display available trains -->
+            <table id="train-table">
+                <thead>
+                    <tr>
+                        <th>Train Name</th>
+                        <th>Train Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Train details will be dynamically populated here -->
+                </tbody>
+            </table>
+            <!-- Proceed button -->
+            <button id="proceed-btn">Proceed</button>
+        </section>
+    </main>
+    
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 IRCTC. All rights reserved.</p>
+    </footer>
+
+    <!-- Include jQuery for AJAX -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Get the departure date, source, and destination from session storage
+            var departureDate = sessionStorage.getItem('departureDate');
+            var source = sessionStorage.getItem('source');
+            var destination = sessionStorage.getItem('destination');
+            // Display the departure date, source, and destination
+            $('#departure-date').text('Departure Date: ' + departureDate);
+            $('#source').text(source);
+            $('#destination').text(destination);
+
+            // Make AJAX request to fetch search results
+            $.get('/search', { source: source, destination: destination }, function(data) {
+                // Check if data is received
+                if (data && data.length > 0) {
+                    // Clear existing table rows
+                    $('#train-table tbody').empty();
+                    // Populate table with received data and store train names and numbers
+                    var trainDetails = [];
+                    data.forEach(function(train) {
+                        // Append row with train details
+                        $('#train-table tbody').append('<tr><td>' + train.trainName + '</td><td>' + train.trainNo + '</td></tr>');
+                        // Store train names and numbers
+                        trainDetails.push(train.trainName + ' - ' + train.trainNo);
+                    });
+                    // Store train details in session storage
+                    sessionStorage.setItem('trainDetails', JSON.stringify(trainDetails));
+                } else {
+                    // Display message if no trains found
+                    $('#train-table tbody').html('<tr><td colspan="2">No trains found</td></tr>');
+                }
+            }).fail(function() {
+                // Display error message if AJAX request fails
+                $('#train-table tbody').html('<tr><td colspan="2">Error fetching data</td></tr>');
+            });
+
+            // Proceed button click event
+            $('#proceed-btn').click(function() {
+                // Redirect to booking.html page
+                window.location.href = 'booking.html';
+            });
+        });
+    </script>
+    
+</body>
+</html>

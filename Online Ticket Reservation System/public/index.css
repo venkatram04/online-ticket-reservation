@@ -1,0 +1,116 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+/* Body styles */
+body {
+    background-image: url('train.jpg');
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: hsl(57, 94%, 50%); /* Light gray background */
+    padding: 20px;
+     /* Set body width to 50cm */
+}
+
+
+/* Header styles */
+header {
+    background-color: #0056b3; /* Dark blue */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Navigation menu styles */
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Main content styles */
+main {
+    margin-top: 20px;
+}
+
+/* Search section styles */
+#search {
+    width: 15cm;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#search h2 {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: calc(50% - 5px);
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+/* Styling for From, To, and Departure Date labels */
+label[for="source"] {
+    color: #000;
+}
+
+label[for="destination"] {
+    color: #000;
+}
+
+label[for="datepicker"] {
+    color: #000;
+}
+
+/* Search Trains button styles */
+button[type="submit"] {
+    background-color: #007bff; /* Blue color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: auto;
+    margin-top: 10px; /* Add margin to separate button from inputs */
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue color */
+}
+
+/* Footer styles */
+footer {
+    margin-top: 20px;
+    background-color: #007bff; /* Dark gray */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}

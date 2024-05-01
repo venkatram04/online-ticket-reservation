@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRCTC - Train Ticket Booking</title>
+    <!-- Include CSS -->
+    <link rel="stylesheet" href="index.css">
+    <!-- Include jQuery for datepicker -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include jQuery UI for datepicker -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Initialize datepicker -->
+    <script>
+        $(function() {
+            $("#datepicker").datepicker({
+                dateFormat: 'dd/mm/yy',
+                onSelect: function(dateText) {
+                    sessionStorage.setItem('departureDate', dateText); // Store selected date in session storage
+                }
+            });
+
+            // Handle form submission
+            $('form').submit(function(event) {
+                event.preventDefault(); // Prevent form submission
+
+                var source = $('#source').val(); // Get source value
+                var destination = $('#destination').val(); // Get destination value
+
+                // Store source and destination in session storage
+                sessionStorage.setItem('source', source);
+                sessionStorage.setItem('destination', destination);
+
+                // Redirect to search page
+                window.location.href = 'search.html';
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>IRCTC Train Ticket Booking</h1>
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Search Form -->
+        <section id="search">
+            <h2>Find Your Train</h2>
+            <form>
+                <label for="source">From:</label>
+                <input id="source" type="text" name="source" list="stations" required>
+                <datalist id="stations">
+                    <option value="Chennai"></option>
+                    <option value="Hyderabad"></option>
+                    <option value="Tirupathi"></option>
+                    <!-- Add more options as needed -->
+                </datalist>
+                <label for="destination">To:</label>
+                <input id="destination" type="text" name="destination" list="stations" required>
+                <datalist id="stations">
+                    <option value="Tirupathi"></option>
+                    <option value="Chennai"></option>
+                    <option value="Hyderabad"></option>
+                    <!-- Add more options as needed -->
+                </datalist>
+                <!-- Calendar Input Field -->
+                <label for="datepicker">Departure Date:</label>
+                <input type="text" id="datepicker" name="departure_date" required>
+                <button type="submit">Search Trains</button>
+            </form>
+        </section>
+    </main>
+    
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 IRCTC. All rights reserved.</p>
+    </footer>
+</body>
+</html>
