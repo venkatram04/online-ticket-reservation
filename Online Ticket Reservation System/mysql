@@ -1,0 +1,17 @@
+create database tkData;
+use tkData;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'venkatRam@04';
+CREATE TABLE cTt (
+    trainName VARCHAR(255),
+    trainNo INT
+);
+INSERT INTO cTt (trainName, trainNo) VALUES ('Charminar express', 55120);
+INSERT INTO cTt (trainName, trainNo) VALUES ('Tamilnadu express', 73451);
+select * from cTt;
+CREATE TABLE hTt (
+    trainName VARCHAR(255),
+    trainNo INT
+);
+INSERT INTO hTt (trainName, trainNo) VALUES ('Hyderabad express', 55121);
+INSERT INTO hTt (trainName, trainNo) VALUES ('Tirupathi express', 73452);
+/* this codes should not run at a time needs to run each line */
